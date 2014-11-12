@@ -6,7 +6,6 @@ import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
-import javax.ws.rs.client.InvocationCallback;
 import javax.ws.rs.container.AsyncResponse;
 import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
@@ -24,22 +23,22 @@ public class HeartbeatResource
 	@Produces(MediaType.APPLICATION_JSON)
 	public void getIt(@Suspended final AsyncResponse asyncResponse)
 	{
-
-		service.getClient().target(target).request().async().get(new InvocationCallback<Response>()
-		{
-			@Override
-			public void completed(Response response)
-			{
-				service.getCache().put(response.toString(), response.getEntity().toString());
-				asyncResponse.resume("{ \"status\" : \"ok\" }");
-			}
-
-			@Override
-			public void failed(Throwable throwable)
-			{
-				service.getCache().put(throwable.toString(), throwable.getLocalizedMessage());
-				asyncResponse.resume(Response.status(HTTP_INTERNAL_ERROR).build());
-			}
-		});
+		service.command("heartbeat-service-v0.document-repository.rest", //
+				() -> {
+					final Response response = service.getClient().target(target).request().get();
+					if (response.getStatus() != 200)
+					{
+						throw new ResourceUnavailableException("Status code " + response.getStatus());
+					}
+					return response;
+				}) //
+				.subscribe(response -> {
+					service.getCache().put(response.toString(), response.getEntity().toString());
+					asyncResponse.resume("{ \"status\" : \"ok\" }");
+				}, throwable -> {
+					service.getCache().put(throwable.toString(), throwable.getLocalizedMessage());
+					asyncResponse.resume(Response.status(HTTP_INTERNAL_ERROR) //
+							.entity("{ \"status\" : \"" + throwable.getMessage() + "\" }").build());
+				});
 	}
 }
