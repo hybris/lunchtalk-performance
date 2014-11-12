@@ -19,6 +19,15 @@ To run project from root directory execute:
 	
 	mvn tomcat7:run 
 
+## Perquisites
+
+  - Java 8
+  - Maven
+  - Git client
+  - [dynatrace agent](https://wiki.hybris.com/display/INFRA/DynaTrace+Resources)
+  - [dynatrace client](https://wiki.hybris.com/display/INFRA/DynaTrace+Resources)
+  - Any Java IDE
+
 ## Step by step
 
  - Clone [GIT Repository](https://github.com/hybris/lunchtalk-performance)
