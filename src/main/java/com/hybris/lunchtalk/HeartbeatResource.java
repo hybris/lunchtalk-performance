@@ -12,13 +12,13 @@ import javax.ws.rs.container.Suspended;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-@Path("heartbit")
-public class HeartbitResource
+@Path("heartbeat")
+public class HeartbeatResource
 {
 	final static String target = "http://repository-v2.dev.cf.hybris.com/internalstatus";
 
 	@Inject
-	public HeartbitService service;
+	public HeartbeatService service;
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

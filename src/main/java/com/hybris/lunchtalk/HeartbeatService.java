@@ -16,13 +16,13 @@ import com.google.common.cache.CacheBuilder;
 @Resource
 @ManagedBean
 @Singleton
-public class HeartbitService
+public class HeartbeatService
 {
 
 	private final Client client;
 	private final Cache<String, String> cache;
 
-	public HeartbitService()
+	public HeartbeatService()
 	{
 		this.client = ClientBuilder.newClient(new ClientConfig() //
 				.property(ClientProperties.CONNECT_TIMEOUT, 1000) //

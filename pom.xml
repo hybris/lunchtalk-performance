@@ -4,13 +4,13 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.hybris.lunchtalk</groupId>
-    <artifactId>heartbit-service</artifactId>
+    <artifactId>heartbeat-service</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>heartbit-service</name>
+    <name>heartbeat-service</name>
 
     <build>
-        <finalName>heartbit-service</finalName>
+        <finalName>heartbeat-service</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -30,11 +30,6 @@
 				<configuration>
 					<path>/</path>
 					<update>true</update>
-					<systemProperties>
-						<!-- the same settings as in gradle deploy -->
-						<JAVA_OPTS>-Xmx256m -Xms256m -Xss512k -XX:+UseCompressedOops</JAVA_OPTS>
-					</systemProperties>
-					<connectorHttpProtocol>org.apache.coyote.http11.Http11NioProtocol</connectorHttpProtocol>
 				</configuration>
 			</plugin>
 

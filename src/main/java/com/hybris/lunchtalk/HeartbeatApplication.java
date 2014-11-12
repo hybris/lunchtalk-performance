@@ -7,18 +7,18 @@ import org.glassfish.jersey.server.ServerProperties;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJaxbJsonProvider;
 
-public class HeartbitApplication extends ResourceConfig
+public class HeartbeatApplication extends ResourceConfig
 {
-	public HeartbitApplication() {
-		register(HeartbitResource.class);
-		register(HeartbitService.class);
+	public HeartbeatApplication() {
+		register(HeartbeatResource.class);
+		register(HeartbeatService.class);
 		register(JacksonFeature.class);
 		register(JacksonJaxbJsonProvider.class);
 		register(ObjectMapperResolver.class);
 		register(new AbstractBinder() {
 			@Override
 			protected void configure() {
-				bind(HeartbitService.class).to(HeartbitService.class);
+				bind(HeartbeatService.class).to(HeartbeatService.class);
 			}
 		});
 
