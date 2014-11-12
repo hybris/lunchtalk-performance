@@ -31,10 +31,10 @@ To run project from root directory execute:
    - connect your stream to hystrix dashboard
  - Add dynatrace agent to your application. See [some hints](https://wiki.hybris.com/display/prodandtech/How+to+set+up+DynaTrace+with+application+on+CloudFoundry#HowtosetupDynaTracewithapplicationonCloudFoundry-Hints)
    - add line to JAVA_OPTS in pom.xml  
-    
-    // please update client path and your name
+    ```sh
+	// please update client path and your name
 	-agentpath:lib/libdtagent-6.0.0.so=name=heartbeat-service_YOUR.NAME,server=10.10.70.69,wait=45,transformationmaxavgwait=256,storage=.
-	
+	```
  - login to dynatrace client and check if your agent is connected
  - add dashboards. See [some hints](https://wiki.hybris.com/display/prodandtech/Framefrog+dynaTrace+configuration)
  - create memory dump
