@@ -23,7 +23,7 @@ public class HeartbeatResource
 	@Produces(MediaType.APPLICATION_JSON)
 	public void getIt(@Suspended final AsyncResponse asyncResponse)
 	{
-		service.command("heartbeat-service-v0.document-repository.rest", //
+		service.command("heartbeat-v0.docu-repo.rest", //
 				() -> {
 					final Response response = service.getClient().target(target).request().get();
 					if (response.getStatus() != 200)
